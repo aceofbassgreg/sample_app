@@ -1,5 +1,6 @@
 SampleApp::Application.routes.draw do
-  get "users/new"
+  resources :users #This endows the application with all the actions needed (associated with
+                #the fundamental operations POST, GET, PUT, AND DELETE) for RESTful Users resource.
 
   root to: 'static_pages#home'
   match '/signup', to: 'users#new'
@@ -19,7 +20,7 @@ SampleApp::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+
 
   # Sample resource route with options:
   #   resources :products do
