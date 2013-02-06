@@ -1,8 +1,13 @@
 SampleApp::Application.routes.draw do
-  resources :users #This endows the application with all the actions needed (associated with
-                #the fundamental operations POST, GET, PUT, AND DELETE) for RESTful Users resource.
-  resources :sessions, only: [:new, :create, :destroy]
-  resources :microposts, only: [:create, :destroy]
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
+  resources :sessions, only:      [:new, :create, :destroy]
+  resources :microposts, only:    [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
   
   root to: 'static_pages#home'
   match '/signup', to: 'users#new'
